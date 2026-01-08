@@ -1,0 +1,94 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3bmqanqh6ylt"]
+
+[ext_resource type="Script" uid="uid://bcbuuv28a43nn" path="res://scripts/pause.gd" id="1_o80xk"]
+
+[sub_resource type="Animation" id="Animation_l2mpd"]
+resource_name = "open"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5a6ek"]
+_data = {
+&"open": SubResource("Animation_l2mpd")
+}
+
+[node name="pause" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o80xk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.211353, 0.1979425, 0.19219515, 0.3137255)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.0
+offset_top = -99.0
+offset_right = 133.0
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="pausa" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "pausa"
+
+[node name="opciones" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "opciones"
+
+[node name="salir" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "salir"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5a6ek")
+}
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/pausa" to="." method="_on_pausa_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/salir" to="." method="_on_salir_pressed"]
